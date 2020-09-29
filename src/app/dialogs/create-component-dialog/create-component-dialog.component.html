@@ -2,7 +2,7 @@
 <h1 mat-dialog-title>Create Component</h1>
   <div mat-dialog-content>
   <form [formGroup]="validateForm">
-  <mat-form-field style="width: 100%;"appearance="outline">
+  <mat-form-field style="width: 100%;" appearance="outline">
     <mat-label>Name</mat-label>
     <input #name reqired matInput  [formControl]="validationName" >
     <mat-error *ngIf="validationName.invalid">Name your Component</mat-error>
@@ -12,7 +12,7 @@
     <input #url reqired matInput  [formControl]="validationUrl" >
     <mat-error *ngIf="validationUrl.invalid">Enter a valid URL</mat-error>
   </mat-form-field>
-  <mat-form-field appearance="outline">
+  <mat-form-field style="width: 100%;" appearance="outline">
     <mat-label>Description</mat-label>
     <input #description matInput >
 
