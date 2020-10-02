@@ -36,6 +36,7 @@ const issueC: Issue = {
   id: Uuid('shipping-service-interface bug', ISSUE_UUID_NAMESPACE),
   title: 'shipping-service-interface bug',
   textBody: 'problem in API',
+  type: IssueType.FEATURE_REQUEST,
 };
 
 const issueD: Issue = {
@@ -57,7 +58,7 @@ const issueF: Issue = {
   id: Uuid('cross-component feature request', ISSUE_UUID_NAMESPACE),
   title: 'cross-component feature request',
   textBody: 'applying to update in another API',
-  type: IssueType.FEATURE_REQUEST,
+  type: IssueType.BUG,
 };
 
 const issueG: Issue = {
@@ -67,23 +68,35 @@ const issueG: Issue = {
   textBody: 'A new feature in this API',
   type: IssueType.FEATURE_REQUEST,
 };
-
+const issueH: Issue = {
+  ...issueTemplate,
+  id: Uuid('payment-service-interface feature', ISSUE_UUID_NAMESPACE),
+  title: 'payment-service-interface feature request',
+  textBody: 'A new feature in this API',
+  type: IssueType.FEATURE_REQUEST,
+};
 
 issueA.relatedIssues = [
-  {
-      relatedIssueId: issueC.id,
-      relationType: IssueRelationType.DEPENDS,
-  }
-];
-
-issueC.relatedIssues = [
   {
       relatedIssueId: issueD.id,
       relationType: IssueRelationType.DEPENDS,
   }
 ];
 
-issueF.relatedIssues = [
+issueD.relatedIssues = [
+  {
+      relatedIssueId: issueE.id,
+      relationType: IssueRelationType.DEPENDS,
+  }
+];
+
+issueB.relatedIssues = [
+  {
+      relatedIssueId: issueG.id,
+      relationType: IssueRelationType.DEPENDS,
+  }
+];
+issueH.relatedIssues = [
   {
       relatedIssueId: issueG.id,
       relationType: IssueRelationType.DEPENDS,
@@ -108,7 +121,7 @@ export const exampleGraph: GraphComponent[] = [
       "BUG": 1,
       "FEATURE_REQUEST": 2
     },
-    issues: [issueA.id, issueB.id, issueF.id],
+    issues: [issueA.id, issueB.id, issueC.id ],
 
     "position": zeroPosition,
     "componentRelations": [
@@ -125,7 +138,7 @@ export const exampleGraph: GraphComponent[] = [
   {
     id: Uuid('shipping-service', COMPONENT_UUID_NAMESPACE),
     name: 'shipping-service',
-    issues: [issueC.id, issueD.id, issueE.id, issueF.id],
+    issues: [issueE.id, issueH.id, issueF.id],
     "description": "",
     "issueCounts": {
       "UNCLASSIFIED": 0,
@@ -146,7 +159,7 @@ export const exampleGraph: GraphComponent[] = [
           "BUG": 1,
           "FEATURE_REQUEST": 0
         },
-        issues: [issueC.id]
+        issues: [issueD.id]
       }
     },
     "componentRelations": [
@@ -163,7 +176,7 @@ export const exampleGraph: GraphComponent[] = [
     "imsId": null,
     "imsRepository": null,
     "owner": null,
-    issues: [issueG.id],
+    issues: [],
     position: zeroPosition,
     "issueCounts": {
       "UNCLASSIFIED": 0,
@@ -195,4 +208,5 @@ export const issues: IssuesState = {
   [issueE.id]: issueE,
   [issueF.id]: issueF,
   [issueG.id]: issueG,
+  [issueH.id]: issueH,
 };
